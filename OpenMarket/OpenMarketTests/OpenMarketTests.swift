@@ -50,25 +50,25 @@ class OpenMarketTests: XCTestCase {
         wait(for: [expectation], timeout: 10.0)
     }
 
-    func test_requestItemModification_existData() throws {
-        let expectation = XCTestExpectation(description: "상품 수정")
-        let imageData = UIImage(systemName: "pencil")!.pngData()!
-        let item = ItemModificationRequest(
-            title: "상품 수정",
-            descriptions: "상품 수정 테스트",
-            price: 100,
-            currency: "KRW",
-            stock: 100,
-            discountedPrice: 50,
-            images: [imageData],
-            password: "test")
-
-        networkLayer.requestModification(id: 22, bodyData: item) { data, _, _ in
-            XCTAssertNotNil(data, "상품 수정")
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 10.0)
-    }
+//    func test_requestItemModification_existData() throws {
+//        let expectation = XCTestExpectation(description: "상품 수정")
+//        let imageData = UIImage(systemName: "pencil")!.pngData()!
+//        let item = ItemModificationRequest(
+//            title: "상품 수정",
+//            descriptions: "상품 수정 테스트",
+//            price: 100,
+//            currency: "KRW",
+//            stock: 100,
+//            discountedPrice: 50,
+//            images: [imageData],
+//            password: "test")
+//
+//        networkLayer.requestModification(id: 22, bodyData: item) { data, _, _ in
+//            XCTAssertNotNil(data, "상품 수정")
+//            expectation.fulfill()
+//        }
+//        wait(for: [expectation], timeout: 10.0)
+//    }
 
     func test_requestItemDeletion_existData() throws {
         let expectation = XCTestExpectation(description: "상품 삭제")

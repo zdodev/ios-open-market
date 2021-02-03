@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17A8D47F25CA39CD00B1C7B0 /* ItemListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8D47E25CA39CD00B1C7B0 /* ItemListViewController.swift */; };
+		17A8D48425CA459700B1C7B0 /* ItemListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8D48325CA459700B1C7B0 /* ItemListTableViewCell.swift */; };
+		17A8D48A25CA45AE00B1C7B0 /* ItemListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A8D48925CA45AE00B1C7B0 /* ItemListCollectionViewCell.swift */; };
 		4102690625C181A0007DDBD2 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4102690525C181A0007DDBD2 /* NetworkLayer.swift */; };
 		412E66EF25C79F4F00E7E50A /* ItemSpecificationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412E66EE25C79F4E00E7E50A /* ItemSpecificationResponse.swift */; };
 		413F27D725C13BA700CD2EAA /* ItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413F27D625C13BA700CD2EAA /* ItemList.swift */; };
@@ -36,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17A8D47E25CA39CD00B1C7B0 /* ItemListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListViewController.swift; sourceTree = "<group>"; };
+		17A8D48325CA459700B1C7B0 /* ItemListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListTableViewCell.swift; sourceTree = "<group>"; };
+		17A8D48925CA45AE00B1C7B0 /* ItemListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListCollectionViewCell.swift; sourceTree = "<group>"; };
 		4102690525C181A0007DDBD2 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		412E66EE25C79F4E00E7E50A /* ItemSpecificationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSpecificationResponse.swift; sourceTree = "<group>"; };
 		413F27D625C13BA700CD2EAA /* ItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemList.swift; sourceTree = "<group>"; };
@@ -76,6 +82,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17A8D48225CA456200B1C7B0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				17A8D48325CA459700B1C7B0 /* ItemListTableViewCell.swift */,
+				17A8D48925CA45AE00B1C7B0 /* ItemListCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		413F27D525C13B7B00CD2EAA /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +135,7 @@
 		C70FB0F925BEF61C00C9924E /* OpenMarket */ = {
 			isa = PBXGroup;
 			children = (
+				17A8D48225CA456200B1C7B0 /* Cell */,
 				C70FB0FA25BEF61C00C9924E /* AppDelegate.swift */,
 				C70FB0FC25BEF61C00C9924E /* SceneDelegate.swift */,
 				C70FB0FE25BEF61C00C9924E /* ViewController.swift */,
@@ -130,6 +146,7 @@
 				C70FB10325BEF61D00C9924E /* Assets.xcassets */,
 				C70FB10525BEF61D00C9924E /* LaunchScreen.storyboard */,
 				C70FB10825BEF61D00C9924E /* Info.plist */,
+				17A8D47E25CA39CD00B1C7B0 /* ItemListViewController.swift */,
 			);
 			path = OpenMarket;
 			sourceTree = "<group>";
@@ -248,8 +265,11 @@
 				412E66EF25C79F4F00E7E50A /* ItemSpecificationResponse.swift in Sources */,
 				413F27F525C1422500CD2EAA /* OpenMarketHTTPRequest.swift in Sources */,
 				413F27D725C13BA700CD2EAA /* ItemList.swift in Sources */,
+				17A8D48A25CA45AE00B1C7B0 /* ItemListCollectionViewCell.swift in Sources */,
 				413F27E625C13F3800CD2EAA /* ItemDeletionRequest.swift in Sources */,
+				17A8D48425CA459700B1C7B0 /* ItemListTableViewCell.swift in Sources */,
 				4176077E25C1BF9C009F1CE3 /* ItemModificationRequest.swift in Sources */,
+				17A8D47F25CA39CD00B1C7B0 /* ItemListViewController.swift in Sources */,
 				C70FB0FF25BEF61C00C9924E /* ViewController.swift in Sources */,
 				413F27EA25C13F7000CD2EAA /* ItemDeletionResponse.swift in Sources */,
 				C70FB0FB25BEF61C00C9924E /* AppDelegate.swift in Sources */,
