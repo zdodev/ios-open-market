@@ -14,8 +14,6 @@ class ItemListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
-        openMarketAPI.requestItemList(page: 1) { data, response, error in
-        }
     }
 }
 
