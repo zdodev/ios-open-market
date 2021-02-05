@@ -7,18 +7,14 @@
 
 import UIKit
 
-class ItemListViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+final class ItemListViewController: UIViewController {
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var segmentedControl: UISegmentedControl!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     private var isEnd: Bool = false
-    private var currentPage: Int = 1 {
-        didSet {
-            print("현재페이지는 \(currentPage) 입니다")
-        }
-    }
+    private var currentPage: Int = 1
     private var items: [Item] = [] {
         didSet {
             if items.isEmpty { return }
@@ -71,7 +67,9 @@ class ItemListViewController: UIViewController {
         tableView.isHidden = true
     }
     
-    @IBAction func segmentChanged(_ sender: UISegmentedControl) {
+    
+    // 매번 리로드 안해도 될 듯. 첨 데이터 받아왓을 때만 해주도록 // didSet 이랑 합치기
+    @IBAction private func segmentChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             showTableView()
         } else if sender.selectedSegmentIndex == 1 {
@@ -124,6 +122,12 @@ extension ItemListViewController: UITableViewDataSource {
     }
 }
 
+//extension UICollectionViewDataSource {
+//    @objc func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        3
+//    }
+//}
+
 extension ItemListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isEnd {
@@ -134,7 +138,7 @@ extension ItemListViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == items.count {
+        if indexPath.item == items.count {
             currentPage += 1
             getItems(page: currentPage)
         }
@@ -142,9 +146,9 @@ extension ItemListViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemListCollectionViewCell", for: indexPath) as? ItemListCollectionViewCell else { return .init() }
-        if indexPath.row == items.count { return cell }
-        cell.setCellStyle()
-        cell.setModel(items[indexPath.row], index: indexPath.row)
+        if indexPath.item == items.count { return cell }
+        //cell.setCellStyle()
+        cell.setModel(items[indexPath.item], index: indexPath.item)
         return cell
     }
 }

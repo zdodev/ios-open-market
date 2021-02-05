@@ -7,17 +7,20 @@
 
 import UIKit
 
-class ItemListCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var itemImageView: UIImageView!
-    @IBOutlet weak var itemNameLabel: UILabel!
-    @IBOutlet weak var stockCountLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var discountedPriceLabel: UILabel!
-    var index: Int?
-    var model: Item? {
-        didSet {
-            updateUI()
-        }
+final class ItemListCollectionViewCell: UICollectionViewCell {
+    @IBOutlet private weak var itemImageView: UIImageView!
+    @IBOutlet private weak var itemNameLabel: UILabel!
+    @IBOutlet private weak var stockCountLabel: UILabel!
+    @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet private weak var discountedPriceLabel: UILabel!
+    private var index: Int?
+    private var model: Item?
+    
+    //뷰 모델 넘겨주기 ( 타이밍은 아무데나 )
+    override func awakeFromNib() {
+        contentView.layer.cornerRadius = 8.0
+        contentView.layer.borderWidth = 1.0
+        contentView.layer.borderColor = UIColor.systemGray.cgColor
     }
     
     override func prepareForReuse() {
@@ -30,8 +33,9 @@ class ItemListCollectionViewCell: UICollectionViewCell {
     }
     
     func setModel(_ model: Item, index: Int) {
-        self.model = model
         self.index = index
+        self.model = model
+        updateUI()
     }
     
     private func updateUI() {
@@ -62,14 +66,6 @@ class ItemListCollectionViewCell: UICollectionViewCell {
             priceLabel.isHidden = true
             discountedPriceLabel.text = "\(item.currency) \(item.price.withCommas())"
         }
-    }
-}
-
-extension ItemListCollectionViewCell {
-    func setCellStyle() {
-        self.contentView.layer.cornerRadius = 8.0
-        self.contentView.layer.borderWidth = 1.0
-        self.contentView.layer.borderColor = UIColor.systemGray.cgColor
     }
 }
 
