@@ -18,18 +18,38 @@ class ItemGridViewController: UIViewController {
 
 extension ItemGridViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        if let masterViewController = parent as? MasterViewController {
+            if !masterViewController.itemList.isEmpty {
+                let count = masterViewController.itemList[0].items.count
+                return count
+            }
+        }
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemGridCell", for: indexPath) as? GridCollectionViewCell {
-            cell.itemImage.image = UIImage(named: "image1")
-            cell.itemTitle.text = "흰머리오목눈이"
-            cell.itemPrice.text = "3천원"
-            cell.itemStock.text = "3마리"
+            if let masterViewController = parent as? MasterViewController {
+                if !masterViewController.itemList.isEmpty {
+                    let item = masterViewController.itemList[0].items[indexPath.row]
+                    cell.itemTitle.text = item.title
+                    cell.itemPrice.text = "\(item.currency) \(item.price)"
+                    cell.itemStock.text = "잔여수량: \(item.stock)"
+                    if !item.thumbnails.isEmpty {
+                        let url = URL(string: item.thumbnails[0])!
+                        let imageData = try! Data(contentsOf: url)
+                        cell.itemImage.image = UIImage(data: imageData)
+                    }
+                } else {
+                    cell.itemImage.image = UIImage(named: "image1")
+                    cell.itemTitle.text = "흰머리오목눈이"
+                    cell.itemPrice.text = "300원"
+                    cell.itemStock.text = "1마리"
+                }
+            }
+            
             return cell
         }
-        return UICollectionViewCell()
-//        return collectionView.dequeueReusableCell(withReuseIdentifier: "ItemGridCell", for: indexPath)
+        return collectionView.dequeueReusableCell(withReuseIdentifier: "ItemGridCell", for: indexPath)
     }
 }

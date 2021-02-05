@@ -12,4 +12,12 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var itemTitle: UILabel!
     @IBOutlet weak var itemPrice: UILabel!
     @IBOutlet weak var itemStock: UILabel!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        itemImage.image = nil
+        itemTitle.text = nil
+        itemPrice.text = nil
+        itemStock.text = nil
+    }
 }

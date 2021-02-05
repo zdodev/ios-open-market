@@ -8,6 +8,9 @@ import UIKit
 
 class MasterViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    var itemList = [ItemList]()
+    var page = 1
+    let openMarketAPI = NetworkLayer()
     
     private lazy var listViewController: ItemListViewController = {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -25,7 +28,17 @@ class MasterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        openMarketAPI.requestItemList(page: page) { result in
+            switch result {
+            case .success(let itemList):
+                self.itemList.append(itemList)
+                DispatchQueue.main.async {
+                    self.listViewController.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
         setupView()
     }
     
